@@ -1,3 +1,5 @@
+import io.freefair.gradle.plugins.github.GithubExtension
+
 /*
  * Copyright (c) 2024 the original author or authors.
  *
@@ -27,6 +29,9 @@ subprojects {
         plugin("pub.ihub.plugin.ihub-java")
         if (project.name.startsWith("ruoyi-common")) {
             plugin("pub.ihub.plugin.ihub-publish")
+            configure<GithubExtension> {
+                this.slug.set("ihub-pub/RuoYi-Vue-Plus")
+            }
         }
     }
 
