@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
         with:
           java-version: ${{ matrix.java_version }}
-          distribution: 'liberica'
+          distribution: 'adopt'
           cache: 'gradle'
 
       - name: Publish to Central Repository
