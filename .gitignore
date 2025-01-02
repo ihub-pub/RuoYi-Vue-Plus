@@ -2,7 +2,7 @@
 # Build Tools
 
 .gradle
-/build/
+build/
 !gradle/wrapper/gradle-wrapper.jar
 
 target/
@@ -46,3 +46,5 @@ nbdist/
 !*/build/*.xml
 
 .flattened-pom.xml
+
+lombok.config
