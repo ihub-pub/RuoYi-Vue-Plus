@@ -11,10 +11,6 @@
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
  */
-plugins {
-    alias(ihub.plugins.publish)
-}
-
 dependencies {
     api(project(":ruoyi-common-core"))
     api(project(":ruoyi-common-doc"))

@@ -38,6 +38,13 @@ subprojects {
 subprojects {
     afterEvaluate {
         if (project.pluginManager.hasPlugin("maven-publish")) {
+            tasks.withType<Javadoc> {
+                options {
+                    this as StandardJavadocDocletOptions
+                    addBooleanOption("Xdoclint:none", true)
+                    addStringOption("Xmaxwarns", "1")
+                }
+            }
             configure<PublishingExtension> {
                 publications.withType {
                     if (this is MavenPublication) {
@@ -66,6 +73,10 @@ subprojects {
                         }
                     }
                 }
+            }
+        } else {
+            tasks.withType<Javadoc> {
+                enabled = false
             }
         }
     }
