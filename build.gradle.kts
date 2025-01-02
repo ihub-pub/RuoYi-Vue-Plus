@@ -1,5 +1,3 @@
-import io.freefair.gradle.plugins.github.GithubBasePlugin
-
 /*
  * Copyright (c) 2024 the original author or authors.
  *
@@ -29,17 +27,46 @@ subprojects {
         plugin("pub.ihub.plugin.ihub-java")
         if (project.name.startsWith("ruoyi-common")) {
             plugin("pub.ihub.plugin.ihub-publish")
-            afterEvaluate {
-                if (project.pluginManager.hasPlugin("io.freefair.github.pom")) {
-                    configure<GithubBasePlugin> {
-                        githubExtension.slug = "ihub-pub/RuoYi-Vue-Plus"
-                    }
-                }
-            }
         }
     }
 
     tasks.withType(JavaCompile::class) {
         options.compilerArgs.add("-parameters")
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        if (project.pluginManager.hasPlugin("maven-publish")) {
+            configure<PublishingExtension> {
+                publications.withType {
+                    if (this is MavenPublication) {
+                        pom {
+                            name = project.name
+                            description = project.description
+                            url = "https://github.com/dromara/RuoYi-Vue-Plus"
+                            licenses {
+                                license {
+                                    name = "MIT License"
+                                    url = "https://opensource.org/licenses/MIT"
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id = "JavaLionLi"
+                                    name = "CrazyLionLi"
+                                    url = "https://github.com/JavaLionLi"
+                                }
+                            }
+                            scm {
+                                url = "https://github.com/dromara/RuoYi-Vue-Plus"
+                                connection = "scm:git:git://github.com/dromara/RuoYi-Vue-Plus.git"
+                                developerConnection = "scm:git:ssh://github.com/dromara/RuoYi-Vue-Plus.git"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
         with:
           java-version: ${{ matrix.java_version }}
-          distribution: 'adopt'
+          distribution: 'liberica'
           cache: 'gradle'
 
       - name: Publish to Central Repository
@@ -34,7 +34,8 @@ jobs:
           repoUsername: ${{ secrets.HENRY_REPO_USERNAME }}
           repoPassword: ${{ secrets.HENRY_REPO_PASSWORD }}
           release: true
-          parallel: false
+          parallel: true
+          applyGithubPom: false
           signingKeyId: ${{ secrets.PUBLIC_SIGNING_KEY_ID }}
           signingPassword: ${{ secrets.PUBLIC_SIGNING_PASSWORD }}
           signingSecretKey: ${{ secrets.PUBLIC_SIGNING_SECRET_KEY }}
