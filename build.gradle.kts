@@ -43,7 +43,7 @@ subprojects {
                     if (this is MavenPublication) {
                         pom {
                             name = project.name
-                            description = project.description
+                            description = "RuoYi Common Libs"
                             url = "https://github.com/dromara/RuoYi-Vue-Plus"
                             licenses {
                                 license {
