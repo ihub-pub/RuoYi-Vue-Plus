@@ -22,6 +22,9 @@ iHubProfiles {
             "profiles.active" to project.property("profiles.active").toString(),
             "monitor.username" to project.property("monitor.username").toString(),
             "monitor.password" to project.property("monitor.password").toString(),
+            "nacos.server" to project.property("nacos.server").toString(),
+            "nacos.username" to project.property("nacos.username").toString(),
+            "nacos.password" to project.property("nacos.password").toString(),
         )
     )
 }
@@ -34,4 +37,5 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("de.codecentric:spring-boot-admin-starter-server")
     implementation("de.codecentric:spring-boot-admin-starter-client")
+    implementation(project(":ruoyi-common-nacos"))
 }

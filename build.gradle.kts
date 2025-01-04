@@ -46,30 +46,28 @@ subprojects {
                 }
             }
             configure<PublishingExtension> {
-                publications.withType {
-                    if (this is MavenPublication) {
-                        pom {
-                            name = project.name
-                            description = "RuoYi Common Libs"
+                publications.withType<MavenPublication> {
+                    pom {
+                        name = project.name
+                        description = "RuoYi Common Libs"
+                        url = "https://github.com/dromara/RuoYi-Vue-Plus"
+                        licenses {
+                            license {
+                                name = "MIT License"
+                                url = "https://opensource.org/licenses/MIT"
+                            }
+                        }
+                        developers {
+                            developer {
+                                id = "JavaLionLi"
+                                name = "CrazyLionLi"
+                                url = "https://github.com/JavaLionLi"
+                            }
+                        }
+                        scm {
                             url = "https://github.com/dromara/RuoYi-Vue-Plus"
-                            licenses {
-                                license {
-                                    name = "MIT License"
-                                    url = "https://opensource.org/licenses/MIT"
-                                }
-                            }
-                            developers {
-                                developer {
-                                    id = "JavaLionLi"
-                                    name = "CrazyLionLi"
-                                    url = "https://github.com/JavaLionLi"
-                                }
-                            }
-                            scm {
-                                url = "https://github.com/dromara/RuoYi-Vue-Plus"
-                                connection = "scm:git:git://github.com/dromara/RuoYi-Vue-Plus.git"
-                                developerConnection = "scm:git:ssh://github.com/dromara/RuoYi-Vue-Plus.git"
-                            }
+                            connection = "scm:git:git://github.com/dromara/RuoYi-Vue-Plus.git"
+                            developerConnection = "scm:git:ssh://github.com/dromara/RuoYi-Vue-Plus.git"
                         }
                     }
                 }

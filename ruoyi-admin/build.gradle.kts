@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 /*
  * Copyright (c) 2024 the original author or authors.
  *
@@ -22,8 +24,9 @@ iHubProfiles {
             "profiles.active" to project.property("profiles.active").toString(),
             "logging.level" to "info",
             "revision" to project.version.toString(),
-            "monitor.username" to project.property("monitor.username").toString(),
-            "monitor.password" to project.property("monitor.password").toString(),
+            "nacos.server" to project.property("nacos.server").toString(),
+            "nacos.username" to project.property("nacos.username").toString(),
+            "nacos.password" to project.property("nacos.password").toString(),
         )
     )
 }
@@ -35,11 +38,19 @@ dependencies {
     implementation(project(":ruoyi-common-social"))
     implementation(project(":ruoyi-common-ratelimiter"))
     implementation(project(":ruoyi-common-mail"))
+    implementation(project(":ruoyi-common-nacos"))
     implementation(project(":ruoyi-system"))
     implementation(project(":ruoyi-job"))
+    implementation(project(":ruoyi-generator"))
+    implementation(project(":ruoyi-workflow"))
+    implementation(project(":ruoyi-demo"))
 
 //    implementation(libs.bundles.modules)
 
     implementation("de.codecentric:spring-boot-admin-starter-client")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.withType<BootJar> {
+    duplicatesStrategy = DuplicatesStrategy.WARN
 }

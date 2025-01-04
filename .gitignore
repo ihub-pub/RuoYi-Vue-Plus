@@ -48,3 +48,4 @@ nbdist/
 .flattened-pom.xml
 
 lombok.config
+.java-local.properties

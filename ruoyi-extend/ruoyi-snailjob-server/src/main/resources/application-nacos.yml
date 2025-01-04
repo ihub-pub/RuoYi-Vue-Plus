@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      # nacos 服务地址
+      server-addr: @nacos.server@
+      username: @nacos.username@
+      password: @nacos.password@
+  config:
+    import:
+      - optional:nacos:spring-boot-admin.yml
+      - optional:nacos:${spring.application.name}.yml
