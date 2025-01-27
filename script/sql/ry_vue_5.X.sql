@@ -5,7 +5,7 @@ create table sys_social
 (
     id                 bigint           not null        comment '主键',
     user_id            bigint           not null        comment '用户ID',
-    tenant_id          varchar(20)      default null    comment '租户id',
+    tenant_id          varchar(20)      default '000000' comment '租户id',
     auth_id            varchar(255)     not null        comment '平台+平台唯一id',
     source             varchar(255)     not null        comment '用户来源',
     open_id            varchar(255)     default null    comment '平台编号唯一id',
@@ -31,7 +31,7 @@ create table sys_social
     create_time        datetime                         comment '创建时间',
     update_by          bigint(20)                       comment '更新者',
     update_time        datetime                         comment '更新时间',
-    del_flag           char(1)          default '0'     comment '删除标志（0代表存在 2代表删除）',
+    del_flag           char(1)          default '0'     comment '删除标志（0代表存在 1代表删除）',
     PRIMARY KEY (id)
 ) engine=innodb comment = '社会化关系表';
 
@@ -55,7 +55,7 @@ create table sys_tenant
     expire_time       datetime                      comment '过期时间',
     account_count     int           default -1      comment '用户数量（-1不限制）',
     status            char(1)       default '0'     comment '租户状态（0正常 1停用）',
-    del_flag          char(1)       default '0'     comment '删除标志（0代表存在 2代表删除）',
+    del_flag          char(1)       default '0'     comment '删除标志（0代表存在 1代表删除）',
     create_dept       bigint(20)                    comment '创建部门',
     create_by         bigint(20)                    comment '创建者',
     create_time       datetime                      comment '创建时间',
@@ -82,7 +82,7 @@ create table sys_tenant_package (
     remark                  varchar(200)               comment '备注',
     menu_check_strictly     tinyint(1)     default 1   comment '菜单树选择项是否关联显示',
     status                  char(1)        default '0' comment '状态（0正常 1停用）',
-    del_flag                char(1)        default '0' comment '删除标志（0代表存在 2代表删除）',
+    del_flag                char(1)        default '0' comment '删除标志（0代表存在 1代表删除）',
     create_dept             bigint(20)                 comment '创建部门',
     create_by               bigint(20)                 comment '创建者',
     create_time             datetime                   comment '创建时间',
@@ -107,7 +107,7 @@ create table sys_dept (
     phone             varchar(11)     default null               comment '联系电话',
     email             varchar(50)     default null               comment '邮箱',
     status            char(1)         default '0'                comment '部门状态（0正常 1停用）',
-    del_flag          char(1)         default '0'                comment '删除标志（0代表存在 2代表删除）',
+    del_flag          char(1)         default '0'                comment '删除标志（0代表存在 1代表删除）',
     create_dept       bigint(20)      default null               comment '创建部门',
     create_by         bigint(20)      default null               comment '创建者',
     create_time       datetime                                   comment '创建时间',
@@ -149,7 +149,7 @@ create table sys_user (
     avatar            bigint(20)                                 comment '头像地址',
     password          varchar(100)    default ''                 comment '密码',
     status            char(1)         default '0'                comment '帐号状态（0正常 1停用）',
-    del_flag          char(1)         default '0'                comment '删除标志（0代表存在 2代表删除）',
+    del_flag          char(1)         default '0'                comment '删除标志（0代表存在 1代表删除）',
     login_ip          varchar(128)    default ''                 comment '最后登录IP',
     login_date        datetime                                   comment '最后登录时间',
     create_dept       bigint(20)      default null               comment '创建部门',
@@ -212,7 +212,7 @@ create table sys_role (
     menu_check_strictly  tinyint(1)      default 1                  comment '菜单树选择项是否关联显示',
     dept_check_strictly  tinyint(1)      default 1                  comment '部门树选择项是否关联显示',
     status               char(1)         not null                   comment '角色状态（0正常 1停用）',
-    del_flag             char(1)         default '0'                comment '删除标志（0代表存在 2代表删除）',
+    del_flag             char(1)         default '0'                comment '删除标志（0代表存在 1代表删除）',
     create_dept          bigint(20)      default null               comment '创建部门',
     create_by            bigint(20)      default null               comment '创建者',
     create_time          datetime                                   comment '创建时间',
@@ -441,6 +441,8 @@ insert into sys_role_menu values ('3', '105');
 insert into sys_role_menu values ('3', '106');
 insert into sys_role_menu values ('3', '107');
 insert into sys_role_menu values ('3', '108');
+insert into sys_role_menu values ('3', '118');
+insert into sys_role_menu values ('3', '123');
 insert into sys_role_menu values ('3', '500');
 insert into sys_role_menu values ('3', '501');
 insert into sys_role_menu values ('3', '1001');
@@ -488,6 +490,12 @@ insert into sys_role_menu values ('3', '1042');
 insert into sys_role_menu values ('3', '1043');
 insert into sys_role_menu values ('3', '1044');
 insert into sys_role_menu values ('3', '1045');
+insert into sys_role_menu values ('3', '1050');
+insert into sys_role_menu values ('3', '1061');
+insert into sys_role_menu values ('3', '1062');
+insert into sys_role_menu values ('3', '1063');
+insert into sys_role_menu values ('3', '1064');
+insert into sys_role_menu values ('3', '1065');
 insert into sys_role_menu values ('3', '1500');
 insert into sys_role_menu values ('3', '1501');
 insert into sys_role_menu values ('3', '1502');
@@ -500,6 +508,25 @@ insert into sys_role_menu values ('3', '1508');
 insert into sys_role_menu values ('3', '1509');
 insert into sys_role_menu values ('3', '1510');
 insert into sys_role_menu values ('3', '1511');
+insert into sys_role_menu values ('3', '1600');
+insert into sys_role_menu values ('3', '1601');
+insert into sys_role_menu values ('3', '1602');
+insert into sys_role_menu values ('3', '1603');
+insert into sys_role_menu values ('3', '1620');
+insert into sys_role_menu values ('3', '1621');
+insert into sys_role_menu values ('3', '1622');
+insert into sys_role_menu values ('3', '1623');
+insert into sys_role_menu values ('3', '11618');
+insert into sys_role_menu values ('3', '11619');
+insert into sys_role_menu values ('3', '11629');
+insert into sys_role_menu values ('3', '11632');
+insert into sys_role_menu values ('3', '11633');
+insert into sys_role_menu values ('3', '11638');
+insert into sys_role_menu values ('3', '11639');
+insert into sys_role_menu values ('3', '11640');
+insert into sys_role_menu values ('3', '11641');
+insert into sys_role_menu values ('3', '11642');
+insert into sys_role_menu values ('3', '11643');
 insert into sys_role_menu values ('4', '5');
 insert into sys_role_menu values ('4', '1500');
 insert into sys_role_menu values ('4', '1501');
@@ -554,10 +581,10 @@ create table sys_oper_log (
     oper_url          varchar(255)    default ''                 comment '请求URL',
     oper_ip           varchar(128)    default ''                 comment '主机地址',
     oper_location     varchar(255)    default ''                 comment '操作地点',
-    oper_param        varchar(2000)   default ''                 comment '请求参数',
-    json_result       varchar(2000)   default ''                 comment '返回参数',
+    oper_param        varchar(4000)   default ''                 comment '请求参数',
+    json_result       varchar(4000)   default ''                 comment '返回参数',
     status            int(1)          default 0                  comment '操作状态（0正常 1异常）',
-    error_msg         varchar(2000)   default ''                 comment '错误消息',
+    error_msg         varchar(4000)   default ''                 comment '错误消息',
     oper_time         datetime                                   comment '操作时间',
     cost_time         bigint(20)      default 0                  comment '消耗时间',
     primary key (oper_id),
@@ -840,7 +867,7 @@ create table sys_oss_config (
 insert into sys_oss_config values (1, '000000', 'minio',  'ruoyi',            'ruoyi123',        'ruoyi',             '', '127.0.0.1:9000',                '','N', '',             '1' ,'0', '', 103, 1, sysdate(), 1, sysdate(), null);
 insert into sys_oss_config values (2, '000000', 'qiniu',  'XXXXXXXXXXXXXXX',  'XXXXXXXXXXXXXXX', 'ruoyi',             '', 's3-cn-north-1.qiniucs.com',     '','N', '',             '1' ,'1', '', 103, 1, sysdate(), 1, sysdate(), null);
 insert into sys_oss_config values (3, '000000', 'aliyun', 'XXXXXXXXXXXXXXX',  'XXXXXXXXXXXXXXX', 'ruoyi',             '', 'oss-cn-beijing.aliyuncs.com',   '','N', '',             '1' ,'1', '', 103, 1, sysdate(), 1, sysdate(), null);
-insert into sys_oss_config values (4, '000000', 'qcloud', 'XXXXXXXXXXXXXXX',  'XXXXXXXXXXXXXXX', 'ruoyi-1250000000',  '', 'cos.ap-beijing.myqcloud.com',   '','N', 'ap-beijing',   '1' ,'1', '', 103, 1, sysdate(), 1, sysdate(), null);
+insert into sys_oss_config values (4, '000000', 'qcloud', 'XXXXXXXXXXXXXXX',  'XXXXXXXXXXXXXXX', 'ruoyi-1240000000',  '', 'cos.ap-beijing.myqcloud.com',   '','N', 'ap-beijing',   '1' ,'1', '', 103, 1, sysdate(), 1, sysdate(), null);
 insert into sys_oss_config values (5, '000000', 'image',  'ruoyi',            'ruoyi123',        'ruoyi',             'image', '127.0.0.1:9000',           '','N', '',             '1' ,'1', '', 103, 1, sysdate(), 1, sysdate(), null);
 
 -- ----------------------------
@@ -856,7 +883,7 @@ create table sys_client (
     active_timeout      int(11)       default 1800        comment 'token活跃超时时间',
     timeout             int(11)       default 604800      comment 'token固定超时',
     status              char(1)       default '0'         comment '状态（0正常 1停用）',
-    del_flag            char(1)       default '0'         comment '删除标志（0代表存在 2代表删除）',
+    del_flag            char(1)       default '0'         comment '删除标志（0代表存在 1代表删除）',
     create_dept         bigint(20)    default null        comment '创建部门',
     create_by           bigint(20)    default null        comment '创建者',
     create_time         datetime      default null        comment '创建时间',
