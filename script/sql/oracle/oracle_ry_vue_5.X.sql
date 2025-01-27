@@ -5,7 +5,7 @@ create table sys_social
 (
     id                 number(20)        not null,
     user_id            number(20)        not null,
-    tenant_id          varchar2(20)      default null,
+    tenant_id          varchar2(20)      default '000000',
     auth_id            varchar2(255)     not null,
     source             varchar2(255)     not null,
     open_id            varchar2(255)     default null,
@@ -65,7 +65,7 @@ comment on column  sys_social.create_by         is '创建者';
 comment on column  sys_social.create_time       is '创建时间';
 comment on column  sys_social.update_by         is '更新者';
 comment on column  sys_social.update_time       is '更新时间';
-comment on column  sys_social.del_flag          is '删除标志（0代表存在 2代表删除）';
+comment on column  sys_social.del_flag          is '删除标志（0代表存在 1代表删除）';
 
 -- ----------------------------
 -- 租户表
@@ -108,7 +108,7 @@ comment on column  sys_tenant.package_id         is '租户套餐编号';
 comment on column  sys_tenant.expire_time        is '过期时间';
 comment on column  sys_tenant.account_count      is '用户数量（-1不限制）';
 comment on column  sys_tenant.status             is '租户状态（0正常 1停用）';
-comment on column  sys_tenant.del_flag           is '删除标志（0代表存在 2代表删除）';
+comment on column  sys_tenant.del_flag           is '删除标志（0代表存在 1代表删除）';
 comment on column  sys_tenant.create_dept        is '创建部门';
 comment on column  sys_tenant.create_by          is '创建者';
 comment on column  sys_tenant.create_time        is '创建时间';
@@ -148,7 +148,7 @@ comment on column  sys_tenant_package.package_name       is '套餐名称';
 comment on column  sys_tenant_package.menu_ids           is '关联菜单id';
 comment on column  sys_tenant_package.remark             is '备注';
 comment on column  sys_tenant_package.status             is '状态（0正常 1停用）';
-comment on column  sys_tenant_package.del_flag           is '删除标志（0代表存在 2代表删除）';
+comment on column  sys_tenant_package.del_flag           is '删除标志（0代表存在 1代表删除）';
 comment on column  sys_tenant_package.create_dept        is '创建部门';
 comment on column  sys_tenant_package.create_by          is '创建者';
 comment on column  sys_tenant_package.create_time        is '创建时间';
@@ -193,7 +193,7 @@ comment on column sys_dept.leader       is '负责人';
 comment on column sys_dept.phone        is '联系电话';
 comment on column sys_dept.email        is '邮箱';
 comment on column sys_dept.status       is '部门状态（0正常 1停用）';
-comment on column sys_dept.del_flag     is '删除标志（0代表存在 2代表删除）';
+comment on column sys_dept.del_flag     is '删除标志（0代表存在 1代表删除）';
 comment on column sys_dept.create_dept  is '创建部门';
 comment on column sys_dept.create_by    is '创建者';
 comment on column sys_dept.create_time  is '创建时间';
@@ -258,7 +258,7 @@ comment on column sys_user.sex          is '用户性别（0男 1女 2未知）'
 comment on column sys_user.avatar       is '头像路径';
 comment on column sys_user.password     is '密码';
 comment on column sys_user.status       is '帐号状态（0正常 1停用）';
-comment on column sys_user.del_flag     is '删除标志（0代表存在 2代表删除）';
+comment on column sys_user.del_flag     is '删除标志（0代表存在 1代表删除）';
 comment on column sys_user.login_ip     is '最后登录IP';
 comment on column sys_user.login_date   is '最后登录时间';
 comment on column sys_user.create_dept  is '创建部门';
@@ -356,7 +356,7 @@ comment on column sys_role.data_scope            is '数据范围（1：全部�
 comment on column sys_role.menu_check_strictly   is '菜单树选择项是否关联显示';
 comment on column sys_role.dept_check_strictly   is '部门树选择项是否关联显示';
 comment on column sys_role.status                is '角色状态（0正常 1停用）';
-comment on column sys_role.del_flag              is '删除标志（0代表存在 2代表删除）';
+comment on column sys_role.del_flag              is '删除标志（0代表存在 1代表删除）';
 comment on column sys_role.create_dept           is '创建部门';
 comment on column sys_role.create_by             is '创建者';
 comment on column sys_role.create_time           is '创建时间';
@@ -615,6 +615,8 @@ insert into sys_role_menu values ('3', '105');
 insert into sys_role_menu values ('3', '106');
 insert into sys_role_menu values ('3', '107');
 insert into sys_role_menu values ('3', '108');
+insert into sys_role_menu values ('3', '118');
+insert into sys_role_menu values ('3', '123');
 insert into sys_role_menu values ('3', '500');
 insert into sys_role_menu values ('3', '501');
 insert into sys_role_menu values ('3', '1001');
@@ -662,6 +664,12 @@ insert into sys_role_menu values ('3', '1042');
 insert into sys_role_menu values ('3', '1043');
 insert into sys_role_menu values ('3', '1044');
 insert into sys_role_menu values ('3', '1045');
+insert into sys_role_menu values ('3', '1050');
+insert into sys_role_menu values ('3', '1061');
+insert into sys_role_menu values ('3', '1062');
+insert into sys_role_menu values ('3', '1063');
+insert into sys_role_menu values ('3', '1064');
+insert into sys_role_menu values ('3', '1065');
 insert into sys_role_menu values ('3', '1500');
 insert into sys_role_menu values ('3', '1501');
 insert into sys_role_menu values ('3', '1502');
@@ -674,6 +682,25 @@ insert into sys_role_menu values ('3', '1508');
 insert into sys_role_menu values ('3', '1509');
 insert into sys_role_menu values ('3', '1510');
 insert into sys_role_menu values ('3', '1511');
+insert into sys_role_menu values ('3', '1600');
+insert into sys_role_menu values ('3', '1601');
+insert into sys_role_menu values ('3', '1602');
+insert into sys_role_menu values ('3', '1603');
+insert into sys_role_menu values ('3', '1620');
+insert into sys_role_menu values ('3', '1621');
+insert into sys_role_menu values ('3', '1622');
+insert into sys_role_menu values ('3', '1623');
+insert into sys_role_menu values ('3', '11618');
+insert into sys_role_menu values ('3', '11619');
+insert into sys_role_menu values ('3', '11629');
+insert into sys_role_menu values ('3', '11632');
+insert into sys_role_menu values ('3', '11633');
+insert into sys_role_menu values ('3', '11638');
+insert into sys_role_menu values ('3', '11639');
+insert into sys_role_menu values ('3', '11640');
+insert into sys_role_menu values ('3', '11641');
+insert into sys_role_menu values ('3', '11642');
+insert into sys_role_menu values ('3', '11643');
 insert into sys_role_menu values ('4', '5');
 insert into sys_role_menu values ('4', '1500');
 insert into sys_role_menu values ('4', '1501');
@@ -738,10 +765,10 @@ create table sys_oper_log (
   oper_url          varchar2(255)   default '',
   oper_ip           varchar2(128)   default '',
   oper_location     varchar2(255)   default '',
-  oper_param        varchar2(2100)  default '',
-  json_result       varchar2(2100)  default '',
+  oper_param        varchar2(4000)  default '',
+  json_result       varchar2(4000)  default '',
   status            number(1)       default 0,
-  error_msg         varchar2(2100)  default '',
+  error_msg         varchar2(4000)  default '',
   oper_time         date,
   cost_time         number(20)      default 0
 );
@@ -1245,7 +1272,7 @@ comment on column sys_client.device_type            is '设备类型';
 comment on column sys_client.active_timeout         is 'token活跃超时时间';
 comment on column sys_client.timeout                is 'token固定超时';
 comment on column sys_client.status                 is '状态（0正常 1停用）';
-comment on column sys_client.del_flag               is '删除标志（0代表存在 2代表删除）';
+comment on column sys_client.del_flag               is '删除标志（0代表存在 1代表删除）';
 comment on column sys_client.create_dept            is '创建部门';
 comment on column sys_client.create_by              is '创建者';
 comment on column sys_client.create_time            is '创建时间';
