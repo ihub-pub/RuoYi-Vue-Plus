@@ -18,7 +18,7 @@ p6spy = { module = 'p6spy:p6spy', version = '3.9.1' }
 # Java 模板引擎
 velocity-engine-core = { module = 'org.apache.velocity:velocity-engine-core', version = '2.4.1' }
 # Java 国密
-bcprov-jdk15to18 = { module = 'org.bouncycastle:bcprov-jdk15to18', version = '1.79' }
+bcprov-jdk15to18 = { module = 'org.bouncycastle:bcprov-jdk15to18', version = '1.80' }
 # 离线IP库
 ip2region = { module = 'org.lionsoul:ip2region', version = '2.7.0' }
 
