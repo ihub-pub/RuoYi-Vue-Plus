@@ -6,16 +6,11 @@ modules = '5.X-SNAPSHOT'
 #ruoyi-demo = { module = 'io.github.ihub-pub:ruoyi-demo', version.ref = 'modules' }
 
 # bom libs
-ihub-dependencies = { module = 'pub.ihub.lib:ihub-dependencies', version = '1.5.4' }
+ihub-dependencies = { module = 'pub.ihub.lib:ihub-dependencies', version = '1.5.7' }
 
 # AWS libs
 aws-bom = { module = 'software.amazon.awssdk:bom', version = '2.29.43' }
 aws-crt = { module = 'software.amazon.awssdk.crt:aws-crt', version = '0.33.7' }
-
-# flowable libs
-flowable-bom = { module = 'org.flowable:flowable-bom', version = '7.1.0' }
-flowable-json-converter = { module = 'org.flowable:flowable-json-converter', version = '6.8.1' }
-batik-all = { module = 'org.apache.xmlgraphics:batik-all', version = '1.18' }
 
 # other libs
 # SQL 监控
@@ -29,10 +24,10 @@ ip2region = { module = 'org.lionsoul:ip2region', version = '2.7.0' }
 
 [bundles]
 platform = [
-    'ihub-dependencies', 'aws-bom', 'flowable-bom'
+    'ihub-dependencies', 'aws-bom'
 ]
 constraints = [
-    'p6spy', 'velocity-engine-core', 'bcprov-jdk15to18', 'aws-crt', 'ip2region', 'flowable-json-converter', 'batik-all'
+    'p6spy', 'velocity-engine-core', 'bcprov-jdk15to18', 'aws-crt', 'ip2region'
 ]
 #modules = [
 #    'ruoyi-demo'

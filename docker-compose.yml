@@ -1,0 +1,46 @@
+services:
+  ruoyi-server:
+    image: ruoyi-admin:main-SNAPSHOT
+    container_name: ruoyi-admin
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+      SPRING_PROFILES_ACTIVE: dev
+      SERVER_PORT: 8081
+    ports:
+      - "8080:8081"
+    volumes:
+      # 配置文件
+      - ./server/logs/:/workspace/logs/
+      # skywalking 探针
+      - ./skywalking/agent/:/ruoyi/skywalking/agent
+    privileged: true
+#    network_mode: "host"
+
+  ruoyi-monitor-admin:
+    image: ruoyi/ruoyi-monitor-admin:main-SNAPSHOT
+    container_name: ruoyi-monitor-admin
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    ports:
+      - "9090:9090"
+    volumes:
+      # 配置文件
+      - ./monitor/logs/:/workspace/logs
+    privileged: true
+  #    network_mode: "host"
+
+  ruoyi-snailjob-server:
+    image: ruoyi/ruoyi-snailjob-server:main-SNAPSHOT
+    container_name: ruoyi-snailjob-server
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    ports:
+      - "8800:8800"
+      - "17888:17888"
+    volumes:
+      - ./snailjob/logs/:/workspace/logs
+    privileged: true
+#    network_mode: "host"

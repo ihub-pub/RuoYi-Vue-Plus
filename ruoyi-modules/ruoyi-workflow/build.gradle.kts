@@ -12,22 +12,11 @@
  * copies or substantial portions of the Software.
  */
 dependencies {
-    // 引入flowable依赖
-    api("org.flowable:flowable-spring-boot-autoconfigure") {
-        exclude(group = "org.flowable", module = "flowable-spring-security")
-    }
-    api("org.flowable:flowable-spring-configurator")
-    api("org.flowable:flowable-spring-boot-starter-actuator")
-    // 绘制flowable流程图
-    api("org.flowable:flowable-image-generator")
-    // flowable json 转换
-    api("org.flowable:flowable-json-converter")
-    // svg转png图片工具
-    api("org.apache.xmlgraphics:batik-all") {
-        exclude(group = "xalan", module = "xalan")
-    }
+    api("org.dromara.warm:warm-flow-mybatis-plus-sb3-starter")
+    api("org.dromara.warm:warm-flow-plugin-ui-sb-web")
 
-    api(project(":ruoyi-common-websocket"))
+    api(project(":ruoyi-common-sse"))
+    api(project(":ruoyi-common-doc"))
     api(project(":ruoyi-common-mail"))
     api(project(":ruoyi-common-sms"))
     api(project(":ruoyi-common-mybatis"))
