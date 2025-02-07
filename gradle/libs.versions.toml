@@ -10,7 +10,7 @@ ihub-dependencies = { module = 'pub.ihub.lib:ihub-dependencies', version = '1.5.
 
 # AWS libs
 aws-bom = { module = 'software.amazon.awssdk:bom', version = '2.30.7' }
-aws-crt = { module = 'software.amazon.awssdk.crt:aws-crt', version = '0.33.10' }
+aws-crt = { module = 'software.amazon.awssdk.crt:aws-crt', version = '0.34.0' }
 
 # other libs
 # SQL 监控
