@@ -16,8 +16,6 @@ dependencies {
     api(project(":ruoyi-common-redis"))
     // AWS SDK for Java 2.x
     api("software.amazon.awssdk:s3") {
-        // 将基于 Netty 的 HTTP 客户端从类路径中移除
-        exclude("software.amazon.awssdk", "netty-nio-client")
         // 将基于 CRT 的 HTTP 客户端从类路径中移除
         exclude("software.amazon.awssdk", "aws-crt-client")
         // 将基于 Apache 的 HTTP 客户端从类路径中移除
@@ -25,8 +23,8 @@ dependencies {
         // 将配置基于 URL 连接的 HTTP 客户端从类路径中移除
         exclude("software.amazon.awssdk", "url-connection-client")
     }
-    // 使用AWS基于 CRT 的 S3 客户端
-    api("software.amazon.awssdk.crt:aws-crt")
+    // 将基于 Netty 的 HTTP 客户端从类路径中移除
+    api("software.amazon.awssdk:netty-nio-client")
     // 基于 AWS CRT 的 S3 客户端的性能增强的 S3 传输管理器
     api("software.amazon.awssdk:s3-transfer-manager")
 }

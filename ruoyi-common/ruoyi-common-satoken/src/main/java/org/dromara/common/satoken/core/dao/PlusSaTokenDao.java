@@ -1,6 +1,7 @@
 package org.dromara.common.satoken.core.dao;
 
 import cn.dev33.satoken.dao.SaTokenDao;
+import cn.dev33.satoken.dao.SaTokenDaoDefaultImpl;
 import cn.dev33.satoken.util.SaFoxUtil;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Lion Li
  */
-public class PlusSaTokenDao implements SaTokenDao {
+public class PlusSaTokenDao extends SaTokenDaoDefaultImpl implements SaTokenDao {
 
     private static final Cache<String, Object> CAFFEINE = Caffeine.newBuilder()
         // 设置最后一次写入或访问后经过固定时间过期
