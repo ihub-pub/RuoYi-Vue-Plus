@@ -9,7 +9,7 @@ modules = '5.X-SNAPSHOT'
 ihub-dependencies = { module = 'pub.ihub.lib:ihub-dependencies', version = '1.5.11' }
 
 # AWS libs
-aws-bom = { module = 'software.amazon.awssdk:bom', version = '2.31.40' }
+aws-bom = { module = 'software.amazon.awssdk:bom', version = '2.31.41' }
 aws-crt = { module = 'software.amazon.awssdk.crt:aws-crt', version = '0.38.2' }
 
 # other libs
