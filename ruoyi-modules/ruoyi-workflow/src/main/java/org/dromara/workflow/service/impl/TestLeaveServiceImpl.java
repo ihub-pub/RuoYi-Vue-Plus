@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.common.core.domain.event.ProcessTaskEvent;
 import org.dromara.common.core.domain.event.ProcessDeleteEvent;
 import org.dromara.common.core.domain.event.ProcessEvent;
-import org.dromara.common.core.domain.event.ProcessTaskEvent;
 import org.dromara.common.core.enums.BusinessStatusEnum;
 import org.dromara.common.core.service.WorkflowService;
 import org.dromara.common.core.utils.MapstructUtils;
@@ -46,6 +46,19 @@ public class TestLeaveServiceImpl implements ITestLeaveService {
 
     private final TestLeaveMapper baseMapper;
     private final WorkflowService workflowService;
+
+    /**
+     * spel条件表达：判断小于2
+     *
+     * @param leaveDays 待判断的变量（可不传自行返回true或false）
+     * @return boolean
+     */
+    public boolean eval(Integer leaveDays) {
+        if (leaveDays <= 2) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 查询请假
@@ -123,7 +136,7 @@ public class TestLeaveServiceImpl implements ITestLeaveService {
     }
 
     /**
-     * 总体流程监听(例如: 草稿，撤销，退回，作废，终止，已完成等)
+     * 总体流程监听(例如: 草稿，撤销，退回，作废，终止，已完成，单任务完成等)
      * 正常使用只需#processEvent.flowCode=='leave1'
      * 示例为了方便则使用startsWith匹配了全部示例key
      *
@@ -144,14 +157,14 @@ public class TestLeaveServiceImpl implements ITestLeaveService {
             // 办理意见
             String message = Convert.toStr(params.get("message"));
         }
-        if (processEvent.isSubmit()) {
+        if (processEvent.getSubmit()) {
             testLeave.setStatus(BusinessStatusEnum.WAITING.getStatus());
         }
         baseMapper.updateById(testLeave);
     }
 
     /**
-     * 执行办理任务监听
+     * 执行任务创建监听
      * 示例：也可通过  @EventListener(condition = "#processTaskEvent.flowCode=='leave1'")进行判断
      * 在方法中判断流程节点key
      * if ("xxx".equals(processTaskEvent.getNodeCode())) {
@@ -162,10 +175,7 @@ public class TestLeaveServiceImpl implements ITestLeaveService {
      */
     @EventListener(condition = "#processTaskEvent.flowCode.startsWith('leave')")
     public void processTaskHandler(ProcessTaskEvent processTaskEvent) {
-        log.info("当前任务执行了{}", processTaskEvent.toString());
-        TestLeave testLeave = baseMapper.selectById(Long.valueOf(processTaskEvent.getBusinessId()));
-        testLeave.setStatus(BusinessStatusEnum.WAITING.getStatus());
-        baseMapper.updateById(testLeave);
+        log.info("当前任务创建了{}", processTaskEvent.toString());
     }
 
     /**

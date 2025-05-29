@@ -1,14 +1,16 @@
 package org.dromara.workflow.domain.vo;
 
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
-import com.alibaba.excel.annotation.ExcelProperty;
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
+import cn.idev.excel.annotation.ExcelProperty;
 import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 import org.dromara.workflow.domain.FlowCategory;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -63,5 +65,10 @@ public class FlowCategoryVo implements Serializable {
      */
     @ExcelProperty(value = "创建时间")
     private Date createTime;
+
+    /**
+     * 子菜单
+     */
+    private List<FlowCategoryVo> children = new ArrayList<>();
 
 }
